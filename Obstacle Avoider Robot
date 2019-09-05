@@ -1,0 +1,148 @@
+int trig = 7;//right
+int echo = 6;
+int trig1 = 4;//front
+int echo1 = 5;
+int trig2 = 2;//left
+int echo2 = 3;
+long duration, distanceL,  duration1, distanceF , duration2 , distanceR;
+int LM1 = 10;
+int LM2 = 12;
+int RM1 = 8;
+int RM2 = 13;
+int ENL = 11;
+int ENR = 9;
+
+// movements
+void fwd()
+{
+  digitalWrite(LM1, HIGH);
+  digitalWrite(RM1, HIGH);
+  digitalWrite(LM2, LOW);
+  digitalWrite(RM2, LOW);
+}
+
+void left()
+{
+  digitalWrite(LM1, LOW);
+  digitalWrite(RM1, HIGH);
+  digitalWrite(LM2, LOW);
+  digitalWrite(RM2, LOW);
+}
+
+void right()
+{
+  digitalWrite(LM1, HIGH);
+  digitalWrite(RM1, LOW);
+  digitalWrite(LM2, LOW);
+  digitalWrite(RM2, LOW);
+}
+
+void QR()
+{
+  digitalWrite(LM1, HIGH);
+  digitalWrite(RM1, LOW);
+  digitalWrite(LM2, LOW);
+  digitalWrite(RM2, HIGH);
+}
+
+void QL()
+{
+  digitalWrite(LM1, LOW);
+  digitalWrite(RM1, HIGH);
+  digitalWrite(LM2, HIGH);
+  digitalWrite(RM2, LOW);
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trig, OUTPUT);   //right
+  pinMode(echo, INPUT);
+  pinMode(trig1, OUTPUT);   //front
+  pinMode(echo1, INPUT);
+  pinMode(trig2, OUTPUT);    //left
+  pinMode(echo2, INPUT);
+  pinMode(LM1, OUTPUT);
+  pinMode(RM1, OUTPUT);
+  pinMode(LM2, OUTPUT);
+  pinMode(RM2, OUTPUT);
+  pinMode(ENL, OUTPUT);
+  pinMode(ENR, OUTPUT);
+}
+
+void loop()
+{
+  Serial.print("L)");
+  distanceL = distance(trig, echo);
+
+  Serial.print("    F)");
+  distanceF = distance(trig1, echo1);
+
+  Serial.print("    R)");
+  distanceR = distance(trig2, echo2);
+
+  Serial.println(" ");
+  //delay(100);
+  if (distanceL <9 &&  distanceF > 17 && distanceR > 11) //R
+  { 
+    analogWrite(ENR,50);
+    analogWrite(ENL,80);
+    fwd();
+  }
+  else if (distanceL > 11  && distanceF > 17 && distanceR < 9 ) //L
+  {
+    analogWrite(ENR,80);
+    analogWrite(ENL,50);
+    fwd();  
+  }
+  else if (distanceL > 35 && distanceF <= 17 && distanceR < 20) //QL
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    left();
+  }
+  else if (distanceL < 20 && distanceF <= 17 && distanceR > 35) //QR
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    right();
+  }
+  else if (distanceL >=9 && distanceL <=11 && distanceF > 17 && distanceR >=9 && distanceR <=11) //F
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    fwd();
+  }
+  else if (distanceL >35 && distanceF > 35 && distanceR <=20) //F
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    fwd();
+  }
+  else if (distanceL<=20 && distanceF > 35 && distanceR >35) //F
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    fwd();
+  }
+  else
+  {
+    analogWrite(ENR,60);
+    analogWrite(ENL,60);
+    fwd();
+  } 
+}
+int distance(int trigPin, int echoPin)
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+
+  int d = duration * .034 / 2;
+
+  Serial.print(d);
+  //delay(250);
+  return d;
+}
