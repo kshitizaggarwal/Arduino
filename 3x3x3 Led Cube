@@ -1,0 +1,333 @@
+int d=500;
+int d1=800;
+void setup()
+{
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  //layers
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+void loop()
+{
+  ran();
+}
+void ran()
+{
+  
+  layer1on();
+ // layer2on();
+ // layer3on();
+  Ion();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d1);
+  LOVEon();
+  delay(d);
+}
+void onn()
+{
+  int i;
+  for(i=2;i<=4; i++)
+    digitalWrite(i, HIGH);
+  for(i=5; i<=13;i++)
+    digitalWrite(i, HIGH);
+}
+void off()
+{
+  int i;
+  for(i=2;i<=4; i++)
+    digitalWrite(i, LOW);
+  for(i=5; i<=13;i++)
+    digitalWrite(i, LOW);
+}
+void layer1on()
+{
+  digitalWrite(2,HIGH);
+}
+void layer1off()
+{
+  digitalWrite(2,LOW);
+}
+void layer2on()
+{
+  digitalWrite(3,HIGH);
+}
+void layer2off()
+{
+  digitalWrite(3,LOW);
+}
+void layer3on()
+{
+  digitalWrite(4,HIGH);
+}
+void layer3off()
+{
+  digitalWrite(4,LOW);
+}
+void Ion()
+{
+  
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Jon()
+{
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Pon()
+{
+  
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+void Lon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Don()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, LOW);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Oon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Von()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+void Eon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Yon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, LOW);
+}
+void Uon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, LOW);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, HIGH);
+  digitalWrite(13, HIGH);
+}
+void Aon()
+{
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, LOW);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+void Ron()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, LOW);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+void Mon()
+{
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
+  digitalWrite(10, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+}
+void MYon()
+{
+  layer1on();
+  //layer2on();
+  //layer3on();
+  Mon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+  
+  layer1on();
+ // layer2on();
+ // layer3on();
+  Yon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+}
+void YOUon()
+{
+  
+  layer1on();
+  //layer2on();
+  //layer3on();
+  Yon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+  //O
+  layer1on();
+  //layer2on();
+ // layer3on();
+  Oon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+  //U
+  layer1on();
+  //layer2on();
+  //layer3on();
+  Uon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+}
+void LOVEon()
+{
+  
+  layer1on();
+ // layer2on();
+  //layer3on();
+  Lon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+  
+  layer1on();
+ // layer2on();
+ // layer3on();
+  Oon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+  
+  layer1on();
+ // layer2on();
+ // layer3on();
+  Von();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+
+  layer1on();
+  //layer2on();
+  //layer3on();
+  Eon();
+  delay(d);
+  layer1off();
+  layer2off();
+  layer3off();
+  delay(d);
+}
