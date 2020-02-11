@@ -1,0 +1,126 @@
+#include<SoftwareSerial.h>
+SoftwareSerial BT(2,3);
+
+int previous_position = 0;  // variable which will tell the current position of the lift
+int next_position=0;     //input which will tell the next position of the lift
+int a=0;
+int value=0;
+int flag=0;
+
+int ticks=0;
+int D=980;
+int position1(int next_position1)
+{
+  next_position=next_position1;
+  Serial.println(next_position);
+  // i have taken ground floor as 0 and according to all possible values if the lift has go up then this condition
+  if (previous_position < next_position)
+  {
+        Serial.println("lift goes up");
+        Serial.println("1    0");
+      flag = next_position - previous_position;
+      previous_position = next_position;
+  }
+  // if the lift has to go up the this condition
+   else if(previous_position > next_position)
+   {
+        Serial.println("lift goes down");
+        Serial.println("0    1");
+        flag = next_position - previous_position;
+        previous_position = next_position;
+   } 
+   
+   return flag;
+}
+void motor(int value)
+{
+  ticks = abs(value);  // this variable holds the number of steps required to change the floor
+  Serial.print("value:");
+  Serial.println(value);
+  if(value>0)
+  {
+    Serial.println("up");
+    digitalWrite(9,LOW);
+    digitalWrite(8,HIGH);
+    digitalWrite(11,HIGH);
+    delay(ticks*D); 
+    digitalWrite(9,LOW);
+    digitalWrite(8,LOW);
+  }
+  else if(value==0)
+  {
+    Serial.println("up");
+    digitalWrite(9,LOW);
+    digitalWrite(8,LOW);
+    delay(ticks*D); 
+    digitalWrite(9,LOW);
+    digitalWrite(8,LOW);
+  }
+  else
+  {
+    Serial.println("down");
+    digitalWrite(9,HIGH);
+    digitalWrite(8,LOW);
+    digitalWrite(11,HIGH);
+    delay(ticks*D); 
+    digitalWrite(9,LOW);
+    digitalWrite(8,LOW);
+  }
+}
+
+void setup() 
+{
+  // put your setup code here, to run once:
+  BT.begin(9600);
+  Serial.begin(9600);
+  pinMode(9,OUTPUT);
+  pinMode(8,OUTPUT);
+}
+
+String readvoice ;
+
+void loop() 
+{
+  while(BT.available())
+  {
+    delay(10);
+    char c=BT.read();
+    readvoice += c;
+  }
+  
+  if (  readvoice.length()>0)
+  {
+    Serial.println(readvoice);
+    if(readvoice=="ground")    //ground floor
+    {
+      next_position=0;
+      a=9;
+      value = position1(next_position);      //position dekhne ke liye
+      motor(value);          
+    }
+    else if(readvoice=="first")    // first floor
+    {
+      Serial.println("first");
+      next_position=1;
+      value = position1(next_position);      //position dekhne ke liye
+      motor(value);          
+    }
+    else if(readvoice=="second")    //second floor
+    {
+      Serial.println("second");
+      next_position=2;
+      value = position1(next_position);      //position dekhne ke liye
+      motor(value);          
+    }
+    else if(readvoice=="third")    //third floor
+    {
+      Serial.println("third");
+      next_position=3;
+      value = position1(next_position);      //position dekhne ke liye
+      motor(value);          
+    }
+    Serial.println("**********************************************************");
+                    
+  }
+  readvoice="";
+  }
